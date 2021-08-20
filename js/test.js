@@ -1,5 +1,9 @@
-var btn = document.querySelector(".btn");
+import anime from 'anime.min.js'
 
-btn.addEventListener( "click", function() {
-    alert("1");
-});
+var elem = document.getElementById('elem');
+elem.addEventListener('click',function(){
+  anime({
+    targets: elem,
+    translateX: 250                
+  })              
+})

@@ -11,6 +11,7 @@
 ・ゲーム終了時にそろった枚数のカウントをリセットする
 
 */
+let countUnit = 0;
 
 window.onload = function () {
     //コンストラクタ作成
@@ -44,6 +45,7 @@ window.onload = function () {
       }
     //テーブル作成
     shuffle();
+    document.getElementById('countUnit').innerHTML = countUnit;
     const table = document.getElementById('table');
     for (let i = 0; i < suits.length; i++) {
       let tr = document.createElement('tr');
@@ -55,7 +57,6 @@ window.onload = function () {
         td.onclick=flip;
         td.num=tempCard.num;
         td.style.backgroundImage=`url(img/${tempCard.front})`;
-        console.log(tempCard);
         // td.textContent = `${tempCard.suit}:${tempCard.num}`;
         tr.appendChild(td);
       }
@@ -78,6 +79,12 @@ window.onload = function () {
             if (firstCard.num === td.num) {
               //２枚が同じだったときの処理
               firstCard = null;
+              countUnit++;
+              if(countUnit === 26){
+                document.getElementById('countUnit').innerHTML = "パーフェクト！！";
+              }else{
+                document.getElementById('countUnit').innerHTML = countUnit + "セット当てたよ";
+              }
             } else {
               flipTimerId = setTimeout(function () {
                 firstCard.classList.add('back');
